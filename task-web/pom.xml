@@ -1,0 +1,101 @@
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.wsy</groupId>
+    <artifactId>task</artifactId>
+    <version>1.0.0</version>
+  </parent>
+  
+  <groupId>com.wsy</groupId>
+  <artifactId>task-web</artifactId>
+  <version>1.0.0</version>
+  <packaging>war</packaging>
+  <name>task-web Maven Webapp</name>
+  <url>http://maven.apache.org</url>
+  
+  <dependencies>
+	<!-- task-web依赖 task-common -->
+    <dependency>
+	  <groupId>com.wsy</groupId>
+	  <artifactId>task-core</artifactId>
+	  <version>${project.version}</version>
+    </dependency>  
+    
+	<dependency>
+	    <groupId>jstl</groupId>
+	    <artifactId>jstl</artifactId>
+	    <version>1.2</version>
+	</dependency>
+	<dependency>
+		<groupId>com.google.code.gson</groupId>
+		<artifactId>gson</artifactId>
+		<version>2.2.1</version>
+	</dependency>	   
+    <!-- 添加Servlet -->  
+	<dependency>
+	    <groupId>javax.servlet</groupId>
+	    <artifactId>javax.servlet-api</artifactId>
+	    <version>3.0.1</version>
+	</dependency>      
+    
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-core</artifactId>
+		<version>4.1.7.RELEASE</version>
+	</dependency>  
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-context</artifactId>
+		<version>4.1.7.RELEASE</version>
+	</dependency>  
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-webmvc</artifactId>
+		<version>4.1.7.RELEASE</version>
+	</dependency>  
+	
+	<dependency>
+	    <groupId>commons-fileupload</groupId>
+	    <artifactId>commons-fileupload</artifactId>
+	    <version>1.3.1</version>
+	</dependency>
+ 
+    <!-- 添加junit单元测试包 -->
+    <dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+        <version>4.12</version>
+        <scope>test</scope>
+    </dependency>     
+    
+  </dependencies>
+  <build>
+    <finalName>task-web</finalName>
+    
+ 	<plugins>
+	    <plugin>
+	        <groupId>org.apache.maven.plugins</groupId>
+	        <artifactId>maven-war-plugin</artifactId>
+	        <version>2.4</version>
+	        <configuration>
+	            <failOnMissingWebXml>false</failOnMissingWebXml>
+	        </configuration>
+	    </plugin>
+	    <plugin>
+	      <groupId>org.mortbay.jetty</groupId>
+	      <artifactId>maven-jetty-plugin</artifactId>
+	      <version>6.1.21</version>
+	      <configuration>
+	        <connectors>
+	          <connector implementation="org.mortbay.jetty.nio.SelectChannelConnector">
+	            <port>8083</port>
+	          </connector>
+	        </connectors>
+	      </configuration>
+	    </plugin>	    
+	</plugins>    
+	   
+  </build>
+</project>
