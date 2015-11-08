@@ -80,7 +80,7 @@ public abstract class BaseDaoMapperAbstract<T> implements IBaseDao<T> {
                 .append(values).append(")");
         String sql = sql_build.toString();
          
-        printSQL.debug(sql);
+        printSQL.info(sql);
 		
 		sqlSessionTemplateASS.insert("create", sql);
 	}
@@ -128,7 +128,7 @@ public abstract class BaseDaoMapperAbstract<T> implements IBaseDao<T> {
 			}
 		}
 		String sql = sql_build.toString();
-		printSQL.debug(sql);
+		printSQL.info(sql);
 		
 		sqlSessionTemplateASS.insert("createOfBatch", sql);
 	}
@@ -141,7 +141,7 @@ public abstract class BaseDaoMapperAbstract<T> implements IBaseDao<T> {
 	    	append(mapper.getPrimaryKey()).append(" = ").append(handleValue(id));
 	         
 	    String sql = sql_build.toString();
-	    printSQL.debug(sql);
+	    printSQL.info(sql);
 		
 		sqlSessionTemplateASS.delete("removeById", sql);
 	}
@@ -162,7 +162,7 @@ public abstract class BaseDaoMapperAbstract<T> implements IBaseDao<T> {
 		sql_build.append(")");
 		
 	    String sql = sql_build.toString();
-	    printSQL.debug(sql);
+	    printSQL.info(sql);
 		
 		sqlSessionTemplateASS.delete("removeOfBatch", sql);
 	}
@@ -203,8 +203,7 @@ public abstract class BaseDaoMapperAbstract<T> implements IBaseDao<T> {
          
         String sql = sql_build.toString();
         
-        printSQL.debug(sql);
-        System.out.println(sql);
+        printSQL.info(sql);
 		
 		sqlSessionTemplateASS.insert("modify", sql);
 	}
@@ -237,7 +236,6 @@ public abstract class BaseDaoMapperAbstract<T> implements IBaseDao<T> {
                 .append(" WHERE " + mapper.getPrimaryKey() + " = #{UUID}");
         
         String sql = sql_build.toString();
-        printSQL.debug(sql);
         
         Map<String, Object> paramMap = new HashMap<String, Object>();
         paramMap.put("UUID", id);
@@ -264,7 +262,7 @@ public abstract class BaseDaoMapperAbstract<T> implements IBaseDao<T> {
                 .append(" WHERE " + mapper.getPrimaryKey() + " = " + handleValue(id) );
         
         String sql = sql_build.toString();
-        printSQL.debug(sql);
+        printSQL.info(sql);
         
 		Map<String, Object> resultMap = sqlSessionTemplateASS.selectOne("findOneById", sql);
 
@@ -273,7 +271,7 @@ public abstract class BaseDaoMapperAbstract<T> implements IBaseDao<T> {
 	
 	public List<T> findList(String sql, Map<String, Object> paramMap) {
 		paramMap.put("value", sql);
-		printSQL.debug(sql);
+		printSQL.info(paramMap.toString());
 		
 		List<Map<String, Object>> resultMapList = sqlSessionTemplateASS.selectList("findList", paramMap);
 		List<T> tList = new ArrayList<T>(resultMapList.size());
@@ -286,7 +284,7 @@ public abstract class BaseDaoMapperAbstract<T> implements IBaseDao<T> {
 	}
 	
 	public <M extends Serializable> List<M> findList(String sql, Map<String, Object> paramMap, Class<M> model) {
-		paramMap.put("value", sql);
+		printSQL.info(paramMap.toString());
 		
 		List<Map<String, Object>> resultMapList = sqlSessionTemplateASS.selectList("findList", paramMap);
 		List<M> tList = new ArrayList<M>(resultMapList.size());
@@ -295,7 +293,7 @@ public abstract class BaseDaoMapperAbstract<T> implements IBaseDao<T> {
 			tList.add(t);
 		}
       
-		printSQL.debug(sql);
+		printSQL.info(sql);
       
 		return tList;
 	}

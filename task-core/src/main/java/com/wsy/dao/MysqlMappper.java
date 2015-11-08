@@ -23,9 +23,8 @@ public class MysqlMappper<T> extends BaseDaoMapperAbstract<T> {
 			tList.add(t);
 		}
 		
-		printSQL.debug(sql);
-		System.out.println(sql);
-		System.out.println(paramMap);
+		printSQL.info(sql);
+		printSQL.info(paramMap.toString());
 		
 		return (List<M>) tList;
 	}
